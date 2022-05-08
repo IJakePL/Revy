@@ -1,7 +1,7 @@
 {
   "name": "revybot",
   "version": "1.0.0",
-  "description": "",
+  "description": "\"# RevyBot\"",
   "main": "index.js",
   "scripts": {
     "start": "nodemon start.js"
@@ -74,5 +74,14 @@
     "uuid": "^8.3.2",
     "yt-search": "^2.10.3",
     "ytdl-core": "^4.11.0"
-  }
+  },
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Izer986/RevyBot.git"
+  },
+  "bugs": {
+    "url": "https://github.com/Izer986/RevyBot/issues"
+  },
+  "homepage": "https://github.com/Izer986/RevyBot#readme"
 }

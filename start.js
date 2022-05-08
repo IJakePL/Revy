@@ -101,22 +101,22 @@ player.on("connectionError", (queue, error) => {
 
 player.on("trackAdd", (queue, track) => {
   queue.metadata.channel.send(
-    `<:emoji_2:968243082699092049> Muzyka **${track.title}** została dodana do kolejki!`
+    `<:emoji_2:968243082699092049> Music **${track.title}** has been added to the queue!`
   );
 });
 
 const commands = [
   {
     name: "help",
-    description: "Sprawdź wszystkie komendy slash",
+    description: "Check all slash commands!",
   },
   {
     name: "play",
-    description: "Rozpocznij słuchać muzykę!",
+    description: "Start listening to music!",
     options: [
       {
         name: "link",
-        description: "Piosenka, którą chcesz zagrać",
+        description: "The song you want to play!",
         type: "3",
         required: true,
       },
@@ -124,19 +124,19 @@ const commands = [
   },
   {
     name: "volume",
-    description: "Ustaw głośność muzyki!",
+    description: "Set the music volume!",
     options: [
       {
-        name: "wartość",
+        name: "value",
         type: "4",
-        description: "Możliwość ustawienia jedynie od 0 do 100",
+        description: "Only 0-100 can be set",
         required: false,
       },
     ],
   },
   {
     name: "loop",
-    description: "Ustaw pętlę",
+    description: "Sets loop mode",
     options: [
       {
         name: "mode",
@@ -166,19 +166,19 @@ const commands = [
   },
   {
     name: "skip",
-    description: "Przejdź do bieżącego utworu",
+    description: "Skip to the current song",
   },
   {
     name: "pause",
-    description: "Wstrzymaj bieżący utwór",
+    description: "Pause the current song",
   },
   {
     name: "resume",
-    description: "Wznów bieżący utwór",
+    description: "Resume the current song",
   },
   {
     name: "stop",
-    description: "Zatrzymaj odtwarzanie",
+    description: "Stop the player",
   },
 ];
 
@@ -209,7 +209,7 @@ client.on("interactionCreate", async (interaction) => {
   if (interaction.commandName === "help") {
     const embed = new MessageEmbed()
       .setDescription(
-        "**Urzyłeś/aś polecenia pomocy, zgodnie z twoim rozkazem udzielę ci najpotrzebniejszej pomocy. Jeśli moja pomoc okaże sie nie skuteczna zgłoś sie na nasz serwer support po więcej wskazówek jak i samej pomocy od administracji**.\n\nObecnie znajdujesz sie w strefie slash command poniżej są wypisane wszystkie komendy które znajdują sie pod [ **` / `** ] jeśli jakiś nie działa udaj sie z tym na serwer support a my sie przyjżymy sprawie\n\n<:emoji_2:968243082699092049> - Muzyka  (**7**)\n **` /play `** | **` /stop `** | **` /resume `** | **` /volume `** | **` /loop `** | **` /pause `** | **` /skip `**"
+        "**You made a request for help, according to your orders I will give you all the help you need. If my help turns out to be ineffective, contact our support server for more tips and help from administration**.\n\nYou are currently in the slash command zone, below are all the commands that are listed under [** `/` **] if one does not work, go to the support server and we will take a look at the matter\n\n<:emoji_2:968243082699092049> - Music  (**7**)\n **` /play `** | **` /stop `** | **` /resume `** | **` /volume `** | **` /loop `** | **` /pause `** | **` /skip `**"
       )
       .setColor("#FE7D35")
       .setFooter({ text: "Version: Alpha 0.1" });
@@ -221,7 +221,7 @@ client.on("interactionCreate", async (interaction) => {
   if (interaction.commandName === "play") {
     if (!interaction.member.voice.channelId)
       return await interaction.followUp({
-        content: "Nie jesteś na kanale głosowym!",
+        content: "You are not in a voice channel!",
       });
     if (
       interaction.guild.me.voice.channelId &&
@@ -229,7 +229,7 @@ client.on("interactionCreate", async (interaction) => {
         interaction.guild.me.voice.channelId
     )
       return await interaction.followUp({
-        content: "Nie jesteś na moim kanale głosowym!",
+        content: "You are not in my voice channel!",
       });
     const query = interaction.options.get("link").value;
     const queue = player.createQueue(interaction.guild, {
@@ -243,7 +243,7 @@ client.on("interactionCreate", async (interaction) => {
     } catch {
       queue.destroy();
       return await interaction.followUp({
-        content: "Nie udało się dołączyć do Twojego kanału głosowego!",
+        content: "Could not join your voice channel!",
       });
     }
     await interaction.deferReply();
@@ -254,107 +254,100 @@ client.on("interactionCreate", async (interaction) => {
       .then((x) => x.tracks[0]);
     if (!track)
       return await interaction.followUp({
-        content: `<:reject:928580897559707658> Utwór **${query}** nie został znaleziony`,
+        content: `<:reject:928580897559707658> Sound **${query}** no results were found!`,
       });
 
     queue.play(track);
 
     return await interaction.followUp({
-      content: `<:emoji_2:968243082699092049> Wczytuję utwór **${track.title}**!`,
+      content: `<:emoji_2:968243082699092049> I'm loading the track: **${track.title}**!`,
     });
   } else if (interaction.commandName === "volume") {
     await interaction.deferReply();
     const queue = player.getQueue(interaction.guildId);
     if (!queue || !queue.playing)
       return void interaction.followUp({
-        content:
-          "<:reject:928580897559707658> Żadna muzyka nie jest odtwarzana!",
+        content: "<:reject:928580897559707658> No music is being played!",
       });
     const vol = interaction.options.get("wartość");
     if (!vol)
       return void interaction.followUp({
-        content: `<:emoji_10:968243448694046850> Obecna głośność to **${queue.volume}**%!`,
+        content: `<:emoji_10:968243448694046850> Current volume is **${queue.volume}**%!`,
       });
     if (vol.value < 0 || vol.value > 100)
       return void interaction.followUp({
-        content:
-          "<:reject:928580897559707658> Wartość głośności nie może przekraczać 0-100",
+        content: "<:reject:928580897559707658> Volume range must be 0-100",
       });
     const success = queue.setVolume(vol.value);
     return void interaction.followUp({
       content: success
-        ? `<:accept:928580897450639361> Ustawiono głośność na **${vol.value}%**!`
-        : "<:reject:928580897559707658> Coś poszło nie tak!",
+        ? `<:accept:928580897450639361> Volume set to **${vol.value}%**!`
+        : "<:reject:928580897559707658> Something went wrong!",
     });
   } else if (interaction.commandName === "skip") {
     await interaction.deferReply();
     const queue = player.getQueue(interaction.guildId);
     if (!queue || !queue.playing)
       return void interaction.followUp({
-        content:
-          "<:reject:928580897559707658> Żadna muzyka nie jest odtwarzana!",
+        content: "<:reject:928580897559707658> No music is being played!",
       });
     const currentTrack = queue.current;
     const success = queue.skip();
     return void interaction.followUp({
       content: success
-        ? `<:accept:928580897450639361> Przeskoczono utwór **${currentTrack}**!`
-        : "<:reject:928580897559707658> Coś poszło nie tak!",
+        ? `<:accept:928580897450639361> Skipped **${currentTrack}**!`
+        : "<:reject:928580897559707658> Something went wrong!",
     });
   } else if (interaction.commandName === "pause") {
     await interaction.deferReply();
     const queue = player.getQueue(interaction.guildId);
     if (!queue || !queue.playing)
       return void interaction.followUp({
-        content:
-          "<:reject:928580897559707658> Żadna muzyka nie jest odtwarzana!",
+        content: "<:reject:928580897559707658> No music is being played!",
       });
     const paused = queue.setPaused(true);
     return void interaction.followUp({
       content: paused
-        ? "⏸ | Paused!"
-        : "<:reject:928580897559707658> Coś poszło nie tak!",
+        ? "<:accept:928580897450639361> Paused!"
+        : "<:reject:928580897559707658> Something went wrong!",
     });
   } else if (interaction.commandName === "resume") {
     await interaction.deferReply();
     const queue = player.getQueue(interaction.guildId);
     if (!queue || !queue.playing)
       return void interaction.followUp({
-        content:
-          "<:reject:928580897559707658> Żadna muzyka nie jest odtwarzana!",
+        content: "<:reject:928580897559707658> No music is being played!",
       });
     const paused = queue.setPaused(false);
     return void interaction.followUp({
       content: !paused
-        ? "<:reject:928580897559707658> Coś poszło nie tak!"
-        : "<:online:935566886488379503> Wznowiono!",
+        ? "<:reject:928580897559707658> Something went wrong!"
+        : "<:online:935566886488379503> Resume!",
     });
   } else if (interaction.commandName === "stop") {
     await interaction.deferReply();
     const queue = player.getQueue(interaction.guildId);
     if (!queue || !queue.playing)
       return void interaction.followUp({
-        content:
-          "<:reject:928580897559707658> Żadna muzyka nie jest odtwarzana!",
+        content: "<:reject:928580897559707658> No music is being played!",
       });
     queue.destroy();
     return void interaction.followUp({
-      content: "<:accept:928580897450639361> Zatrzymano muzykę!",
+      content: "<:accept:928580897450639361> Stopped the player!",
     });
   } else if (interaction.commandName === "loop") {
     await interaction.deferReply();
     const queue = player.getQueue(interaction.guildId);
     if (!queue || !queue.playing)
       return void interaction.followUp({
-        content:
-          "<:reject:928580897559707658> Żadna muzyka nie jest odtwarzana!",
+        content: "<:reject:928580897559707658> No music is being played!",
       });
     const loopMode = interaction.options.get("mode").value;
     const success = queue.setRepeatMode(loopMode);
     return void interaction.followUp({
       content: success
-        ? `<:online:935566886488379503> Zaktualizowany tryb pętli!`
-        : "<:reject:928580897559707658> Nie można zaktualizować trybu pętli!",
+        ? `<:online:935566886488379503> Updated loop mode!`
+        : "<:reject:928580897559707658> Could not update loop mode!",
     });
   }
 });
