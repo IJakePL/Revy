@@ -73,7 +73,7 @@ client.on("messageCreate", async (message) => {
           "\n\n***Useful links:***\n<:question:928580930887626782> **[Server Support](https://discord.gg/s5ZE2EHtQx)**\n<:repair:928580897341575188> **[Dashboard](https://revybot.fun/login)**\n<:globus:928580897182199908> **[Website](https://revybot.fun)**\n<:link:928580931193806848> **[Invite Bot](https://discord.com/api/oauth2/authorize?client_id=954459831023054959&permissions=8&scope=bot%20applications.commands)**"
       )
       .setColor("#FE7D35")
-      .setFooter({ text: "Version: Alpha 0.1" });
+      .setFooter({ text: "Version: Beta 0.2" });
     return message.reply({
       content: "**Revy - Your Discord Bot!**",
       embeds: [oznacznie],
