@@ -1,0 +1,59 @@
+* {
+  background-color: rgb(39, 41, 52);
+}
+
+body a {
+  padding-left: 350px;
+  font-size: 1.8vh;
+  text-decoration: none;
+  color: rgb(155, 157, 159);
+}
+
+body a:hover {
+  text-decoration: none;
+  color: #fff;
+}
+
+body a.logo {
+  text-decoration: none;
+  color: #fff;
+  font-weight: bold;
+  font-size: 3.5vh;
+}
+
+.nav-link {
+  font-size: 1.7vh;
+  margin-right: 20px;
+}
+
+.navbar-nav.ml-auto {
+  padding-right: 350px;
+  margin-right: 10px;
+  font-weight: 500;
+}
+
+.premium {
+  color: rgb(253, 188, 48);
+}
+
+body .login {
+  white-space: nowrap;
+  user-select: none;
+  line-height: 1;
+  font-weight: bold;
+  display: flex;
+  border-radius: 3px;
+  font-size: 13px;
+  -webkit-box-pack: center;
+  justify-content: center;
+  -webkit-box-align: center;
+  align-items: center;
+  padding: 5px 25px;
+  border: none;
+  color: rgb(242, 244, 251);
+  background: rgb(57, 148, 255);
+  cursor: pointer;
+  min-height: 40px;
+  min-width: 60px;
+  width: unset;
+}
