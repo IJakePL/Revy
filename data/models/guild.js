@@ -1,11 +1,10 @@
 const { model } = require("mongoose");
 
-class GeneralModule {
+class General {
   prefix = "^";
-  blacklistedChannelIds = [];
 }
 
 module.exports = model("guild", {
   _id: String,
-  general: { type: Object, default: new GeneralModule() },
+  general: { type: Object, default: new General() },
 });
