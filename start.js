@@ -5,7 +5,9 @@ const {
   Intents,
   MessageEmbed,
   Collection,
+  GuildMember,
   MessageActionRow,
+  MessageSelectMenu,
   MessageButton,
 } = require("discord.js");
 const { ReactionCollector } = require("discord.js-collector");
@@ -21,7 +23,7 @@ client.on("ready", async (msg) => {
   client.user.setPresence({
     activities: [
       {
-        name: `/help - ${client.guilds.cache.size} Servers!`,
+        name: `/help`,
       },
     ],
   });
@@ -31,7 +33,7 @@ client.on("guildCreate", (guild) => {
   client.user.setPresence({
     activities: [
       {
-        name: `/help - ${client.guilds.cache.size} Servers!`,
+        name: `/help`,
       },
     ],
   });
@@ -41,7 +43,7 @@ client.on("guildDelete", (guild) => {
   client.user.setPresence({
     activities: [
       {
-        name: `/help- ${client.guilds.cache.size} Servers!`,
+        name: `/help`,
       },
     ],
   });
@@ -112,10 +114,10 @@ client.on("messageCreate", async (message) => {
           "help `\nSlash command ` /help `" +
           "\n\n***Useful links:***\n<:question:928580930887626782> **[Server Support](https://discord.gg/s5ZE2EHtQx)**\n<:repair:928580897341575188> **[Dashboard](https://revybot.fun/login)**\n<:globus:928580897182199908> **[Website](https://revybot.fun)**\n<:link:928580931193806848> **[Invite Bot](https://discord.com/api/oauth2/authorize?client_id=954459831023054959&permissions=8&scope=bot%20applications.commands)**"
       )
-      .setColor("#FE7D35")
+      .setColor("#468499")
       .setFooter({ text: "Version: Beta 0.3" });
     return message.reply({
-      content: "**Revy - Your Discord Bot!**",
+      content: "**RevyBot - Your Discord Bot!**",
       embeds: [oznacznie],
       allowedMentions: { repliedUser: false },
     });
@@ -176,7 +178,7 @@ const commands = [
     description: "Start listening to music!",
     options: [
       {
-        name: "link",
+        name: "song",
         description: "The song you want to play!",
         type: "3",
         required: true,
@@ -241,6 +243,10 @@ const commands = [
     name: "stop",
     description: "Stop the player",
   },
+  {
+    name: "ping",
+    description: "Shows bot latency",
+  },
 ];
 
 const rest = new REST({ version: "9" }).setToken(
@@ -284,7 +290,7 @@ client.on("interactionCreate", async (interaction) => {
       .setDescription(
         "**You made a request for help, according to your orders I will give you all the help you need. If my help turns out to be ineffective, contact our support server for more tips and help from administration**.\n\nYou are currently in the slash command zone, below are all the commands that are listed under [** `/` **] if one does not work, go to the support server and we will take a look at the matter\n\n<:emoji_13:968243590633500672> - Information (**3**)\n **` /server `** | **` /user `** | **` /info `**\n<:emoji_2:968243082699092049> - Music  (**7**)\n **` /play `** | **` /stop `** | **` /resume `** | **` /volume `** | **` /loop `** | **` /pause `** | **` /skip `**"
       )
-      .setColor("#FE7D35")
+      .setColor("#468499")
       .setFooter({ text: "Version: Beta 0.3" });
     return interaction.reply({
       embeds: [embed],
@@ -292,6 +298,37 @@ client.on("interactionCreate", async (interaction) => {
       components: [row],
     });
   }
+
+  if (interaction.commandName === "ping") {
+    await interaction.deferReply();
+    const queue = player.getQueue(interaction.guild);
+
+    return void interaction.followUp({
+      embeds: [
+        {
+          title: "⏱️ | Latency",
+          fields: [
+            {
+              name: "Bot Latency",
+              value: `\`${Math.round(client.ws.ping)}ms\``,
+            },
+            {
+              name: "Voice Latency",
+              value: !queue
+                ? "N/A"
+                : `UDP: \`${
+                    queue.connection.voiceConnection.ping.udp ?? "N/A"
+                  }\`ms\nWebSocket: \`${
+                    queue.connection.voiceConnection.ping.ws ?? "N/A"
+                  }\`ms`,
+            },
+          ],
+          color: "#468499",
+        },
+      ],
+    });
+  }
+
   if (interaction.commandName === "server") {
     const verificationLevels = {
       NONE: "0",
@@ -311,7 +348,7 @@ client.on("interactionCreate", async (interaction) => {
       allowedMentions: { repliedUser: false },
       embeds: [
         new MessageEmbed()
-          .setColor("#FE7D35")
+          .setColor("#468499")
           .setThumbnail(interaction.guild.iconURL({ dynamic: true, size: 512 }))
           .setAuthor({
             name: `${interaction.guild.name}`,
@@ -380,7 +417,7 @@ client.on("interactionCreate", async (interaction) => {
         .setThumbnail(
           interaction.user.displayAvatarURL({ size: 1024, dynamic: true })
         )
-        .setColor("#FE7D35")
+        .setColor("#468499")
         .setAuthor({
           name: interaction.user.tag,
           iconURL: interaction.user.displayAvatarURL({ dynamic: true }),
@@ -404,7 +441,7 @@ client.on("interactionCreate", async (interaction) => {
       moment.locale(`en`);
       const userinfo = new MessageEmbed()
         .setThumbnail(user.user.displayAvatarURL({ size: 1024, dynamic: true }))
-        .setColor("#FE7D35")
+        .setColor("#468499")
         .setAuthor({
           name: user.user.tag,
           iconURL: user.user.displayAvatarURL({ dynamic: true }),
@@ -445,7 +482,7 @@ client.on("interactionCreate", async (interaction) => {
     );
 
     const embed = new MessageEmbed()
-      .setColor("#FE7D35")
+      .setColor("#468499")
       .addField(
         `<:mention:928580897073152021> Ping:`,
         `**${client.ws.ping}** ms`,
@@ -467,7 +504,7 @@ client.on("interactionCreate", async (interaction) => {
         `**${(process.memoryUsage().rss / 1024 / 1024).toFixed(2)}** mb`,
         true
       )
-      .addField(`<:setting:928580896834080788> Version:`, `Beta **0.3**`, true);
+      .addField(`<:setting:928580896834080788> Version:`, `**Beta 0.3**`, true);
     interaction.reply({
       embeds: [embed],
       components: [bot],
@@ -475,19 +512,27 @@ client.on("interactionCreate", async (interaction) => {
     });
   }
   if (interaction.commandName === "play") {
-    if (!interaction.member.voice.channelId)
-      return await interaction.followUp({
+    if (
+      !(interaction.member instanceof GuildMember) ||
+      !interaction.member.voice.channel
+    ) {
+      return void interaction.reply({
         content: "You are not in a voice channel!",
+        ephemeral: true,
       });
+    }
+
     if (
       interaction.guild.me.voice.channelId &&
       interaction.member.voice.channelId !==
         interaction.guild.me.voice.channelId
-    )
-      return await interaction.followUp({
+    ) {
+      return void interaction.reply({
         content: "You are not in my voice channel!",
+        ephemeral: true,
       });
-    const query = interaction.options.get("link").value;
+    }
+    const query = interaction.options.get("song").value;
     const queue = player.createQueue(interaction.guild, {
       metadata: {
         channel: interaction.channel,

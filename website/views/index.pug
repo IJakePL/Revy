@@ -4,7 +4,7 @@ html(lang='en')
         meta(charset="UTF-8")
         meta(name="viewport", content="width=device-width, initial-scale=1.0")
 
-        title Revy - The Discord Bot
+        title RevyBot - The Discord Bot
 
         link(rel='stylesheet', href='/css/index.css')
         link(rel='stylesheet', href='https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css', integrity='sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z', crossorigin='anonymous')
@@ -13,11 +13,9 @@ html(lang='en')
         script(src='https://code.jquery.com/jquery-3.5.1.slim.min.js', integrity='sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj', crossorigin='anonymous', defer)
         script(src='https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js', integrity='sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN', crossorigin='anonymous', defer)
         script(src='https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js', integrity='sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV', crossorigin='anonymous', defer)
-    body
+    body.v1
         nav.navbar.navbar-expand-lg
             a.logo.navbar-brand(href='/') REVY
-            button.navbar-toggler(type='button', data-toggle='collapse', data-target='#navbar', aria-controls='navbar', aria-expanded='false', aria-label='Toggle navigation')
-                span.navbar-toggler-icon
             #navbar.collapse.navbar-collapse
                 .navbar-nav
                 .navbar-nav.ml-auto
@@ -35,14 +33,23 @@ html(lang='en')
                             span.name.pl-2 #{user.username}
                     else
                         a.login(href='/login') Login
-        .main
+        .main.krzak
             .center
                 .text-center
                     h1 Make A Professional Discord Server!
                     h3 Configure moderation, leveling, YouTube alerts, 
                     h3 and much more with the most easy-to-use dashboard!
                 .buttons
-                    a.button-add-to-discord(href="/invite") Add to discord 
+                    a.button-add-to-discord(href="https://discord.com/api/oauth2/authorize?client_id=954459831023054959&permissions=8&scope=bot%20applications.commands") Add to discord 
                     a.button-login-dashbard(href="/login") Dashboard
-        .footer 
-            h4 test
+                .test
+        .box
+            .box-text 
+                h3.tekscior.cos Build the best Discord Server! 
+        .kekw.info
+            .text
+                h1.sus Say hello to the new users on your Discord server
+                .impostor.crazy Take advantage of the welcome message to inform newcomers about your server rules, topic, or ongoing events. You can design your own welcome card or keep it simple.
+            .text
+                h1.sus Music for your server
+                .impostor.crazy Listen to music right from your Discord server with the most stable and intuitive music bot.

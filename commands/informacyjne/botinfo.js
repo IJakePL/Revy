@@ -44,7 +44,7 @@ module.exports = {
         `**${(process.memoryUsage().rss / 1024 / 1024).toFixed(2)}** mb`,
         true
       )
-      .addField(`<:setting:928580896834080788> Version:`, `Beta **0.3**`, true);
+      .addField(`<:setting:928580896834080788> Version:`, `**Beta 0.3**`, true);
     msg.reply({
       embeds: [embed],
       components: [bot],
