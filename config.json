@@ -6,5 +6,5 @@
     "token": "OTU0NDU5ODMxMDIzMDU0OTU5.YjTb_A.gRd0rLcKvGK2MuRa_ssWd1Gxi4s"
   },
   "dashboardURL": "http://localhost:80",
-  "mongoURI": "mongodb+srv://AdministratorRevyBot:U3igwbn80oHGVtFb@cluster0.cavv9.mongodb.net/myFirstDatabase?retryWrites=true&w=majority"
+  "mongoURI": "mongodb://localhost/RevyBot-Demo"
 }
