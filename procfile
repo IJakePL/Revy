@@ -1,5 +1,1 @@
-<<<<<<< HEAD
-node start.js
-=======
-node start.js
->>>>>>> 258a9f03978f4d7c44ab0af590f58589192f7fc0
+worker: node start.js
