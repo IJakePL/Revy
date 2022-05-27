@@ -91,6 +91,7 @@ client.on("messageCreate", async (message) => {
   if (cmd.length === 0) return;
 
   let command = client.commands.get(cmd);
+  if (!command) message.react("<:reject:928580897559707658>");
   if (!command) command = client.commands.get(client.aliases.get(cmd));
 
   if (command) command.run(client, message, args);
@@ -306,7 +307,7 @@ client.on("interactionCreate", async (interaction) => {
     return void interaction.followUp({
       embeds: [
         {
-          title: "⏱️ | Latency",
+          title: "⏱️ Latency",
           fields: [
             {
               name: "Bot Latency",
@@ -318,9 +319,9 @@ client.on("interactionCreate", async (interaction) => {
                 ? "N/A"
                 : `UDP: \`${
                     queue.connection.voiceConnection.ping.udp ?? "N/A"
-                  }\`ms\nWebSocket: \`${
+                  }\` ms\nWebSocket: \`${
                     queue.connection.voiceConnection.ping.ws ?? "N/A"
-                  }\`ms`,
+                  }\` ms`,
             },
           ],
           color: "#468499",
