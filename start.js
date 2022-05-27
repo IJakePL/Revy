@@ -55,7 +55,7 @@ module.exports = client;
 const mongoose = require("mongoose");
 
 mongoose.connect(
-  config.mongoURI,
+  process.env.MongoDb || config.mongoURI,
   { useNewUrlParser: true, useUnifiedTopology: true },
   (error) =>
     error
