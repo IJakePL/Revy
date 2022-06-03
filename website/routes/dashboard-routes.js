@@ -4,15 +4,15 @@ const { validateGuild } = require("../modules/middleware");
 
 const router = express.Router();
 
-router.get("/app", (req, res) => res.render("dashboard/index"));
+router.get("/guilds", (req, res) => res.render("dashboard/index"));
 
-router.get("/servers/:id", validateGuild, async (req, res) =>
+router.get("/guilds/:id", validateGuild, async (req, res) =>
   res.render("dashboard/show", {
     savedGuild: await guilds.get(req.params.id),
   })
 );
 
-router.put("/servers/:id/:module", validateGuild, async (req, res) => {
+router.put("/guilds/:id/:module", validateGuild, async (req, res) => {
   try {
     const { id, module } = req.params;
 

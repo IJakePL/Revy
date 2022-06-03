@@ -33,6 +33,7 @@
     "crypto-js": "^4.1.1",
     "disco-oauth": "^4.2.7",
     "discord-api-types": "^0.31.2",
+    "discord-gamecord": "^2.0.0",
     "discord-markdown": "^2.5.1",
     "discord-player": "^5.2.2",
     "discord-reply": "^0.1.2",

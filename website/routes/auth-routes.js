@@ -17,7 +17,7 @@ router.get("/auth", async (req, res) => {
     const key = await authClient.getAccess(code);
 
     res.cookies.set("key", key);
-    res.redirect("/app");
+    res.redirect("/guilds");
   } catch {
     res.redirect("/");
   }

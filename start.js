@@ -49,23 +49,7 @@ client.on("guildDelete", (guild) => {
   });
 });
 
-module.exports = client;
-
-// ---------------------- DATA BASE -------------------------
-const mongoose = require("mongoose");
-
-mongoose.connect(
-  process.env.MongoDb || config.mongoURI,
-  { useNewUrlParser: true, useUnifiedTopology: true },
-  (error) =>
-    error
-      ? console.log("[ DATABASE ]   >>>   Nie połączono z bazą danych!")
-      : console.log("[ DATABASE ]   >>>   Połączono z bazą danych!")
-);
-
-// ------------------------------- HANDLER --------------------------------------
-
-const guilds = require("./data/guilds");
+// -----------------------------------------------------------------------------
 client.commands = new Collection();
 client.aliases = new Collection();
 
@@ -74,6 +58,8 @@ client.categories = fs.readdirSync("./commands/");
 ["command"].forEach((handler) => {
   require(`./handlers/${handler}`)(client);
 });
+
+const guilds = require("./data/guilds");
 
 client.on("messageCreate", async (message) => {
   const savedGuild = await guilds.get(message.guild.id);
@@ -96,6 +82,20 @@ client.on("messageCreate", async (message) => {
 
   if (command) command.run(client, message, args);
 });
+
+module.exports = client;
+
+// ---------------------- DATA BASE -------------------------
+const mongoose = require("mongoose");
+
+mongoose.connect(
+  process.env.MongoDb || config.mongoURI,
+  { useNewUrlParser: true, useUnifiedTopology: true },
+  (error) =>
+    error
+      ? console.log("[ DATABASE ]   >>>   Nie połączono z bazą danych!")
+      : console.log("[ DATABASE ]   >>>   Połączono z bazą danych!")
+);
 
 // -------------------------------- OZNACZENIE ------------------------------------
 
@@ -654,4 +654,6 @@ client.on("interactionCreate", async (interaction) => {
   }
 });
 
-//require("./website/site");
+// -----------------------------------------------------------------------------
+
+require("./website/site");

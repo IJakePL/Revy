@@ -25,7 +25,7 @@ module.exports = {
       .setColor(`#468499`)
       .setTitle(`Server emoji list ${msg.guild.name}`)
       .setDescription(
-        `\n\n**Animated** [ **\`${Animated}\`** ]:\n\n${EmojisAnimated}\n\n**Common** [ **\`${EmojiCount}\`** ]:\n\n${Emojis}\n\n**All emojis:** [ **\`${OverallEmojis}\`** ]`
+        `\n\n**Animated** [ **\`${Animated}\`** ]:\n\n${EmojisAnimated}\n\n**Common** [ **\`${EmojiCount}\`** ]:\n\n${Emojis}`
       )
       .setFooter({
         text: `${msg.author.tag}`,

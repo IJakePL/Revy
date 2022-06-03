@@ -1,0 +1,61 @@
+doctype
+html(lang='en')
+    head 
+        meta(charset="UTF-8")
+        meta(name="viewport", content="width=device-width, initial-scale=1.0")
+
+        title RevyBot
+
+        link(rel='stylesheet', href='/css/index-panel.css')
+        link(rel='stylesheet', href='https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css', integrity='sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z', crossorigin='anonymous')
+        link(rel='stylesheet', href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css')
+
+        script(src='https://code.jquery.com/jquery-3.5.1.slim.min.js', integrity='sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj', crossorigin='anonymous', defer)
+        script(src='https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js', integrity='sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN', crossorigin='anonymous', defer)
+        script(src='https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js', integrity='sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV', crossorigin='anonymous', defer)
+    body.v1
+        nav.navbar.navbar-expand-lg
+            a.logo.navbar-brand(href='/') REVY
+            #navbar.collapse.navbar-collapse
+                .navbar-nav
+                    h3.select Select Server
+                .navbar-nav.ml-auto
+                    span.username.pl-2 #{user.username}
+                    img.user-avatar.round(src=user.avatarUrl(128))
+        .select-server
+            each guild in guilds
+                .ytre6
+                    if guild.icon
+                        .server-banner
+                            img.banner-server(alt=guild.name, src=guild.iconURL({ dynamic: true, size: 128 }))
+                        .server-name 
+                            .names #{guild.name}
+                        a.lolek.manage(href='/guilds/' + guild.id) Manage Server
+                        .server-icon
+                            img.round(alt=guild.name, src=guild.iconURL({ dynamic: true }))
+                    else
+                        .server-banner
+                            img.banner-server(alt=guild.name, src="/img/pfp.webp")
+                        .server-name 
+                            .names #{guild.name}
+                        a.lolek.manage(href='/guilds/' + guild.id) Manage Server
+                        .server-icon
+                               img.round(alt=guild.name, src="/img/pfp.webp")
+
+                    
+        //- #sidebar.float-left
+        //-     a(href='/dashboard')
+        //-         .icon.round.shadow
+        //-             img.round(alt=user.username, src=user.avatarUrl(64))
+        //-     hr
+        //-     each guild in guilds
+        //-         a(href='/servers/' + guild.id)
+        //-             .icon.round.shadow.my-2(data-toggle='tooltip', data-placement='right', title=guild.name)
+        //-                 if guild.icon
+        //-                     img.round(alt=guild.name, src=guild.iconURL({ dynamic: true, size: 64 }))
+        //-                 else
+        //-                     p.edit.text-center.plus #{guild.nameAcronym}
+        //-     a(href='/invite')
+        //-         .icon
+        //-             p.plus.add.text-success.text-center
+        //-                 i.fas.fa-plus

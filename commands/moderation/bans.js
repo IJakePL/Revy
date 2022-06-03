@@ -26,7 +26,7 @@ module.exports = {
         embeds: [
           new MessageEmbed()
             .setDescription(
-              `>>> <:ban:928580931026059274> **Lista Zbanowanych** \n\`\`\`diff\n${list}\n\`\`\``
+              `>>> <:ban:928580931026059274> **Banned List** \n\`\`\`diff\n${list}\n\`\`\``
             )
             .setColor("GREEN")
             .setFooter(
