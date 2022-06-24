@@ -42,6 +42,6 @@ app.all("*", (req, res) => res.render("errors/404"));
 const port = 80;
 app.listen(port, () =>
   console.log(
-    `[ WEBSITE ]    >>>   Uruchomiono serwer strony na porcie  > ${port} <`
+    `[RevyBot.fun]: [ WEBSITE ]    >>>   Uruchomiono serwer strony na porcie: 80`
   )
 );

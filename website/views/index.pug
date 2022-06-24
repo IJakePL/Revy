@@ -4,7 +4,7 @@ html(lang='en')
         meta(charset="UTF-8")
         meta(name="viewport", content="width=device-width, initial-scale=1.0")
 
-        title RevyBot
+        title Revy - Your Discord Bot
 
         link(rel='stylesheet', href='/css/index.css')
         link(rel='stylesheet', href='https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css', integrity='sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z', crossorigin='anonymous')
@@ -41,7 +41,10 @@ html(lang='en')
                     h3 and much more with the most easy-to-use dashboard!
                 .buttons
                     a.button-add-to-discord(href="https://discord.com/api/oauth2/authorize?client_id=954459831023054959&permissions=8&scope=bot%20applications.commands") Add to discord 
-                    a.button-login-dashbard(href="/login") Dashboard
+                    if user
+                        a.button-login-dashbard(href="/guilds") Dashboard
+                    else
+                        a.button-login-dashbard(href="/login") Dashboard
                 .test
         .box
             .box-text 

@@ -1,0 +1,112 @@
+doctype
+html(lang='en')
+    head 
+        meta(charset="UTF-8")
+        meta(name="viewport", content="width=device-width, initial-scale=1.0")
+
+        title Revy - Your Discord Bot
+
+        link(rel='stylesheet', href='/css/show.css')
+        link(rel='stylesheet', href='/css/charts.css')
+        link(rel='stylesheet', href='https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css', integrity='sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z', crossorigin='anonymous')
+        link(rel='stylesheet', href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css')
+
+        script(src='https://cdn.jsdelivr.net/chartist.js/latest/chartist.min.js', defer)
+        script(src='https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.3.2/highlight.min.js', defer)
+
+        script(defer).
+            const messagesLog = [!{logs.messages}];
+            const punishmentsLog = [!{logs.punishments}];
+            const joinsLog = [!{logs.joins}];
+            const leavesLog = [!{logs.leaves}];
+            const guildId = '#{logs.id}';
+            const key = '#{key}';
+        script(src='/js/charts.js', defer)
+        script(src='/js/gtag.js', defer)
+
+        script(src='https://code.jquery.com/jquery-3.5.1.slim.min.js', integrity='sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj', crossorigin='anonymous', defer)
+        script(src='https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js', integrity='sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN', crossorigin='anonymous', defer)
+        script(src='https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js', integrity='sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV', crossorigin='anonymous', defer)
+    body.v2
+        #main
+            nav.navbar.navbar-expand-lg
+                a.logo.navbar-brand(href='/') REVY
+                #navbar.collapse.navbar-collapse
+                    .navbar-nav
+                    .navbar-nav.ml-auto
+                        if (admin === user.id) 
+                            a(href="/admin")
+            .asjgdk
+                .oapdi.qoweri
+                    .sidebar
+                        .aefskgh
+                            .rewlui
+                                .sluisd
+                                    .eykfau
+                                        .qfwegk.flkua   
+                                            if guild.icon
+                                                img.round(src=guild.iconURL({ dynamic: true }), alt=guild.name)
+                                            else
+                                                img.round(alt=guild.name, src="/img/pfp.webp")
+                                        .vcqbxu #{guild.name}
+                .ayupo
+                    .foweg
+                        h3.pfidr Overview
+                    .mt-30
+                        .row.gap-1.ui-1.ui-2.ui-3
+                            .kuher.col-md
+                                .faigh
+                                    .ktvus
+                                        i.fas.fa-user-ninja
+                                    div
+                                        h5 New Messages
+                                        p in the last 24h
+                                h3 #{logs.messages[0]} #{logs.messages[1]} #{logs.messages[2]} #{logs.messages[3]} #{logs.messages[4]} #{logs.messages[5]} #{logs.messages[7]}
+                            .kuher.col-md 
+                                .faigh
+                                    .kdfajg 
+                                        i.fas.fa-star
+                                    div 
+                                        h5 Owner Server
+                                h3 #{owner.user.tag}
+                            .kuher.col-md
+                                .faigh
+                                    .kfsyu 
+                                        i.fas.fa-user-alt
+                                    div 
+                                        h5 Total Members
+                                h3 #{guild.memberCount}
+                    .mt-30
+                        .row.gap-1.ui-1.ui-2.ui-3
+                            .kuher.col-md
+                                .faigh
+                                    .bmfhjg 
+                                        i.fas.fa-at
+                                    div 
+                                        h5 Total Roles
+                                h3.md-20 #{guild.roles.cache.size}
+                            .kuher.col-md
+                                .faigh
+                                    .gysius 
+                                        i.fas.fa-hashtag
+                                    div 
+                                        h5 Total Channels
+                                h3.md-20 #{guild.channels.cache.size}
+                            .kuher.col-md
+                        .charts.mt-5.px-4
+                            .card-dark.float-left
+                                h3 Joins / Leaves
+                                .joins-chart
+                            .card-dark.float-left
+                                h3 Punishments
+                                .punishments-chart
+                            .card-dark.float-left
+                                h3 Messages
+                                .messages-chart
+                        //-  header.qwuypo.text-center.pt-4
+                        //-     .large-icon.round
+                        //-         if guild.icon
+                        //-             img.round(src=guild.iconURL({ dynamic: true, size: 128 }), alt=guild.name)
+                        //-         else
+                        //-             img.round(alt=guild.name, src="/img/pfp.webp")
+                        //-     h4#overview.pt-2 #{guild.name}

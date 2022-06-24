@@ -1,5 +1,7 @@
 const express = require("express");
 const guilds = require("../../data/guilds");
+const logs = require("../../data/logs");
+const client = require("../../start");
 const { validateGuild } = require("../modules/middleware");
 
 const router = express.Router();
@@ -9,6 +11,10 @@ router.get("/guilds", (req, res) => res.render("dashboard/index"));
 router.get("/guilds/:id", validateGuild, async (req, res) =>
   res.render("dashboard/show", {
     savedGuild: await guilds.get(req.params.id),
+    logs: await logs.get(req.params.id),
+    owner: await client.guilds.cache.get(req.params.id).fetchOwner(),
+    users: client.users.cache,
+    key: res.cookies.get("key"),
   })
 );
 

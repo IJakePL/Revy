@@ -20,5 +20,5 @@ module.exports = (client) => {
     }
   });
 
-  console.log("[ HANDLER ]    >>>   Załadowano komendy!");
+  console.log("[RevyBot.fun]: [ HANDLER ]    >>>   Załadowano komendy.");
 };

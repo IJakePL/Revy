@@ -1,9 +1,15 @@
 {
   "devs": ["427505231937404942"],
+  "roles": {
+    "admin_user_ids": ["427505231937404942"],
+    "developer_user_ids": [],
+    "mods_user_ids": []
+  },
   "bot": {
     "id": "954459831023054959",
     "secret": "_RWbQVmuOmnfWQFwG3U4dJcxhuFmSSRR",
-    "token": "OTU0NDU5ODMxMDIzMDU0OTU5.YjTb_A.gRd0rLcKvGK2MuRa_ssWd1Gxi4s"
+    "token": "OTU0NDU5ODMxMDIzMDU0OTU5.YjTb_A.gRd0rLcKvGK2MuRa_ssWd1Gxi4s",
+    "token_testing": "OTc5NDE1MTg2OTc0ODQ3MDE2.GwiOIU.Q3rU4A2JdohgiZ9gWKckZm_DWl-vnfbtsZtMSg"
   },
   "dashboardURL": "http://localhost:80",
   "mongoURI": "mongodb+srv://AdministratorRevyBot:U3igwbn80oHGVtFb@cluster0.cavv9.mongodb.net/myFirstDatabase?retryWrites=true&w=majority"
